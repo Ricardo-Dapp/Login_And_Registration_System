@@ -1,0 +1,8 @@
+Description: A simple app that allows a user to register for an account, login, use forget password, or exit.
+
+Steps:
+1. Create simple menu UI that displays options for create account, login, use forget password, and exit.
+2. Be able to accept input from the user
+3. implement functionality for creating an account, login, use forget password, and exit.
+4. Display information to the user
+
