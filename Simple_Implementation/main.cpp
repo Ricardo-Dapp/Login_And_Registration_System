@@ -1,8 +1,16 @@
 #include <iostream>
+#include <map>
 #include <string>
 
+std::map<std::string,std::string> users;
 
-int DisplayUI()
+void DisplayUI();
+void Login();
+void Register();
+void ForgotPassword();
+void UserExit();
+
+void DisplayUI()
 {
      int userAnswer = 0;
 
@@ -17,7 +25,22 @@ int DisplayUI()
     std::cout << "Please enter your choice: ";
     std::cin >> userAnswer;
 
-    return userAnswer;
+    if (userAnswer == 1)
+    {
+        Login();
+    }
+    else if (userAnswer == 2)
+    {
+        Register();
+    }
+     else if(userAnswer == 3)
+    {
+        ForgotPassword();
+    }
+     else if(userAnswer == 4)
+    {
+        UserExit();
+    }
 }
 
 void Login()
@@ -31,56 +54,54 @@ void Login()
     std::cout << "Please enter your password: ";
     std::cin >> password;
 
-    VerifyLogin(username,password);
+    if(users[username] == password)
+    {
+        std::cout << "You are Logged in as: " << username << "\n\n";
+    }
+    else
+    {
+        std::cout << "Username or password does not match any users... Please try again\n\n";
+        DisplayUI();
+    }
     
 }
 
-void VerifyLogin(std::string username,std::string password)
-{
-    std::string registeredUsers[100][100];
-    
-}
 
 void Register()
 {
+    std::string userInput;
+    std::string passwordInput;
 
+    std::cout << "Enter a username: ";
+    std::cin >> userInput;
+
+    std::cout << "Enter a password: ";
+    std:: cin >> passwordInput;
+
+    users[userInput] = passwordInput;
+
+    std::cout << "You have registered an account!\n\n";
+    DisplayUI();
 }
 
 void ForgotPassword()
 {
+    std::string userInput;
+    std::cout << "To recover your password please enter your username: ";
+    std::cin >> userInput;
 
+    std::cout << "Your password is: " << users[userInput] << "\n\n";
+    DisplayUI();
 }
 
 void UserExit()
 {
-    std::cout << "Thank you...Goodbye!\n";
+    std::cout << "Thank you...Goodbye!\n\n";
 }
 
 int main()
 {
-
-    int directUser = 0;
-
-    directUser = DisplayUI();
-    
-    if (directUser == 1)
-    {
-        Login();
-    }
-    else if (directUser == 2)
-    {
-        Register();
-    }
-     else if(directUser == 3)
-    {
-        ForgotPassword();
-    }
-     else if(directUser == 4)
-    {
-        UserExit();
-    }
-    
-
+    DisplayUI();
     
     return 0;
 }
